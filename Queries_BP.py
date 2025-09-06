@@ -1,6 +1,6 @@
 
 
-Simple Analysis of Black Publications Dataset 18th-21st
+Simple Analysis of Black Publications Dataset 18th-21st centuries
 Century 
 
 import sqlite3
