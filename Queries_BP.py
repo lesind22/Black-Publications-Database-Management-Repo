@@ -23,22 +23,24 @@ if not table_exists:
     conn.close()
     exit()
 
-# Query to find cities and states where publications thrived between 1969-1980
+# Query to find the time period with the most publications
 query = '''
-SELECT DISTINCT publishing_company_city, publishing_company_state
+SELECT time_period, COUNT(*) AS publication_count
 FROM publications
-WHERE time_period LIKE '%1969%' OR time_period LIKE '%1980%'
-   OR (CAST(SUBSTR(time_period, 1, 4) AS INTEGER) >= 1969 AND CAST(SUBSTR(time_period, -4) AS INTEGER) <= 1980);
+GROUP BY time_period
+ORDER BY publication_count DESC
+LIMIT 1;
 '''
 
 # Execute the query
 cursor.execute(query)
-results = cursor.fetchall()
+result = cursor.fetchone()
 
-# Print the results
-print("\nCities and states where publications thrived between 1969-1980:")
-for row in results:
-    print(f"City: {row[0]}, State: {row[1]}")
+# Print the result
+if result:
+    print(f"\nThe time period with the most publications is {result[0]} with {result[1]} publications.")
+else:
+    print("\nNo publications found in the database.")
 
 # Close the connection
 conn.close()
