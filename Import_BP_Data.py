@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS publications (
     audience TEXT,
     frequency TEXT,
     time_period TEXT,
-    publishing_company_city TEXT,
-    publishing_company_state TEXT
+    city TEXT,
+    state TEXT
 )
-''')
+''') 
 
 # Sample data to insert
 data = [
