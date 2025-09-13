@@ -3,10 +3,9 @@
 # Simple Analysis of Black Publications Dataset 18th-21st centuries
 # Century 
 
+# What is the time period with the most publications?
+# Answer "The time period with the most publications is 1970-Current with 2 publications"
 
-# The first question I want to ask from what I've been working with
-# so far is "What city and state did these publications thrive
-# in from the years 1869-1969".
 
 import sqlite3
 
