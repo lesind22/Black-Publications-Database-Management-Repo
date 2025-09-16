@@ -8,7 +8,7 @@ print("=== Creating Publications.db and Importing Data ===")
 conn = sqlite3.connect('Publications.db')
 cursor = conn.cursor()
 
-# Drop the existing table (if needed) and recreate it with the correct schema
+# Adding in 'time_period' column
 cursor.execute("DROP TABLE IF EXISTS publications")
 cursor.execute('''
 CREATE TABLE publications (
@@ -16,18 +16,21 @@ CREATE TABLE publications (
     publication_title TEXT NOT NULL,
     advertisement_type TEXT NOT NULL,
     volume TEXT,
-    issue TEXT
+    issue TEXT,
+    time_period TEXT
 )
 ''')
-print("Table `publications` created successfully!")
+print("Table `publications` recreated successfully!")
+
 
 # Open and read the CSV file
 with open('Ad_Type_BP.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
-    next(csv_reader)  # Skip the header row
+    next(csv_reader)  
 
     # Prepare data for insertion
     data = [
+    ("Freedom Journal", )
     ("Ringwood's Afro American Journal of Fashion", "Sponsored Content", "2", "5"),
     ("The Voice of the Negro", "Public Service Announcement", "4", "46"),
     ("The Crisis", "Sponsored Content", "68", "13,000"),
@@ -52,7 +55,7 @@ with open('Ad_Type_BP.csv', 'r') as csv_file:
 
 # Insert data into the `publications` table
 cursor.executemany('''
-    INSERT INTO publications (publication_title, advertisement_type, volume, issue)
+    INSERT INTO publications (publication_title, advertisement_type, volume, issue, time_period)
     VALUES (?, ?, ?, ?)
 ''', data)
 
@@ -60,4 +63,4 @@ cursor.executemany('''
 conn.commit()
 conn.close()
 
-print("Data with volume and issue imported successfully into Publications.db!")
+print("Data with volume, issue, and time_period imported successfully into Publications.db!")
