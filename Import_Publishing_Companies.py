@@ -22,7 +22,7 @@ print("Table `publishing_companies` created successfully!")
 
 # Sample data for publishing companies
 data = [
-    ("Johnson Publishing Company", "Chicago", "Illinois", 1942, "Publisher of Ebony and Jet magazines."),
+    ("Johnson Publishing Company", "Chicago", "Illinois", "1942", "Publisher of Ebony and Jet magazines."),
     ("The Crisis Publishing Company", "New York City", "New York", 1910, "Publisher of The Crisis magazine."),
     ("Freedomways Associates", "New York City", "New York", 1961, "Publisher of Freedomways journal."),
     ("The Black Panther Party", "Oakland", "California", 1966, "Publisher of The Black Panther Newspaper."),
