@@ -2,13 +2,16 @@
 
 import sqlite3
 import csv
+import os
+
+file_path = 'Ad_Type_BP.csv'
 
 # Connect to the database (creates Publications.db if it doesn't exist)
 print("=== Creating Publications.db and Importing Data ===")
 conn = sqlite3.connect('Publications.db')
 cursor = conn.cursor()
 
-# Adding in 'time_period' column
+# Create the table
 cursor.execute("DROP TABLE IF EXISTS publications")
 cursor.execute('''
 CREATE TABLE publications (
@@ -20,16 +23,9 @@ CREATE TABLE publications (
     time_period TEXT
 )
 ''')
-print("Table `publications` recreated successfully!")
 
-
-# Open and read the CSV file
-with open('Ad_Type_BP.csv', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    next(csv_reader)  
-
-    # Prepare data for insertion
-    data = [
+# Prepare data for insertion
+data = [
     ("Freedom's Journal", "Sponsored Content", "2", "103", "1827-1829"),
     ("The North Star Newspaper", "Sponsored Content", "", "187", "1847-1851"),
     ("The Provincial Freeman Newspaper", "Sponsored Content", "", "49", "1853-1857"),
@@ -61,14 +57,27 @@ with open('Ad_Type_BP.csv', 'r') as csv_file:
     ("Soulbook: Quarterly Journal of Revolutionary Afroamerica", "Sponsored Content", "3", "8", "1964-1970"),
     ("The Root Magazine", "Sponsored Content", "29", "", "2008-current")
 ]
+
 # Insert data into the `publications` table
 cursor.executemany('''
     INSERT INTO publications (publication_title, advertisement_type, volume, issue, time_period)
     VALUES (?, ?, ?, ?, ?)
 ''', data)
 
-# Commit changes and close the connection
+# Process the CSV file if it exists
+if not os.path.exists(file_path):
+    print(f"Error: File '{file_path}' not found.")
+else:
+    with open(file_path, 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader)  # Skip the header row
+        for row in csv_reader:
+            cursor.execute('''
+                INSERT INTO publications (publication_title, advertisement_type, volume, issue, time_period)
+                VALUES (?, ?, ?, ?, ?)
+            ''', row)
+
+# Commit changes and close the database connection
 conn.commit()
 conn.close()
-
-print("Data with volume, issue, and time_period imported successfully into Publications.db!")
+print("=== Database Created and Data Imported Successfully ===")
