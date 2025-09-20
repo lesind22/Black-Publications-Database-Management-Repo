@@ -27,6 +27,7 @@ CREATE TABLE publications (
 # Prepare data for insertion
 data = [
     ("Freedom's Journal", "Sponsored Content", "2", "103", "1827-1829"),
+    ("The Colored American Magazine", "Sponsored Content", "9", "", "1837-1909"),
     ("The North Star Newspaper", "Sponsored Content", "", "187", "1847-1851"),
     ("The Provincial Freeman Newspaper", "Sponsored Content", "", "49", "1853-1857"),
     ("The Christian Recorder Newspaper", "Sponsored Content", "24", "473", "1854-1888"),
@@ -37,6 +38,7 @@ data = [
     ("The Voice of the Negro", "Public Service Announcement", "4", "46", "1904-1907"),
     ("The Crisis", "Sponsored Content", "68", "13,000", "1910-current"),
     ("The West End News Newspaper", "Sponsored Content", "", "1,305", "1912-1973"),
+    ("The Messenger Magazine", "Sponsored Content", "10", "", "1917-1928"),
     ("Opportunity: A Journal of Negro Life", "Sponsored Content", "27", "14", "1923-1949"),
     ("The Negro Yearbook: An Encyclopedia of the Negro", "Sponsored Content", "1", "1", "1951"),
     ("The Negro Yearbook: An Encyclopedia of the Negro", "Sponsored Content", "1", "2", "1952"),
@@ -70,14 +72,16 @@ if not os.path.exists(file_path):
 else:
     with open(file_path, 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
-        next(csv_reader)  # Skip the header row
+        next(csv_reader)  
         for row in csv_reader:
+            
             cursor.execute('''
                 INSERT INTO publications (publication_title, advertisement_type, volume, issue, time_period)
                 VALUES (?, ?, ?, ?, ?)
-            ''', row)
+            ''', row[:5])  
 
 # Commit changes and close the database connection
 conn.commit()
 conn.close()
-print("=== Database Created and Data Imported Successfully ===")
+
+print("=== Database Created and Data Imported Successfully ===") 
