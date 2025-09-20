@@ -66,19 +66,6 @@ cursor.executemany('''
     VALUES (?, ?, ?, ?, ?)
 ''', data)
 
-# Process the CSV file if it exists
-if not os.path.exists(file_path):
-    print(f"Error: File '{file_path}' not found.")
-else:
-    with open(file_path, 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        next(csv_reader)  
-        for row in csv_reader:
-            
-            cursor.execute('''
-                INSERT INTO publications (publication_title, advertisement_type, volume, issue, time_period)
-                VALUES (?, ?, ?, ?, ?)
-            ''', row[:5])  
 
 # Commit changes and close the database connection
 conn.commit()
