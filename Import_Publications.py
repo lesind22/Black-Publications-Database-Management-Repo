@@ -30,7 +30,7 @@ with open('Ad_Type_BP.csv', 'r') as csv_file:
 
     # Prepare data for insertion
     data = [
-    ("Freedom Journal", "Sponsored Content", "2", "103", "1827-1829"),
+    ("Freedom's Journal", "Sponsored Content", "2", "103", "1827-1829"),
     ("The North Star Newspaper", "Sponsored Content", "", "187", "1847-1851"),
     ("The Provincial Freeman Newspaper", "Sponsored Content", "", "49", "1853-1857"),
     ("The Christian Recorder Newspaper", "Sponsored Content", "24", "473", "1854-1888"),
