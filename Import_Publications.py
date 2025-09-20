@@ -34,7 +34,7 @@ with open('Ad_Type_BP.csv', 'r') as csv_file:
     ("The North Star Newspaper", "Sponsored Content", "", "187", "1847-1851"),
     ("The Provincial Freeman Newspaper", "Sponsored Content", "", "49", "1853-1857"),
     ("The Christian Recorder Newspaper", "Sponsored Content", "24", "473", "1854-1888"),
-    ("The New South Newspaper", "Editorial", "", "67", "1862-1966"),
+    ("The New South Newspaper", "Editorial", "", "67", "1862-1866"),
     ("The California Eagle Newspaper", "Sponsored Content", "80", "", "1879-1964"),
     ("The Woman's Era Newspaper", "Sponsored Content", "3", "22", "1894-1897"),
     ("Ringwood's Afro American Journal of Fashion", "Sponsored Content", "2", "5", "1891-1894"),
