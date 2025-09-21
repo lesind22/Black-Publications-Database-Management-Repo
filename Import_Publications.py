@@ -36,7 +36,7 @@ data = [
     ("The Woman's Era Newspaper", "Sponsored Content", "3", "22", "1894-1897"),
     ("Ringwood's Afro American Journal of Fashion", "Sponsored Content", "2", "5", "1891-1894"),
     ("The Voice of the Negro", "Public Service Announcement", "4", "46", "1904-1907"),
-    ("The Crisis", "Sponsored Content", "68", "13,000", "1910-current"),
+    ("Crisis Magazine", "Sponsored Content", "68", "13,000", "1910-current"),
     ("The West End News Newspaper", "Sponsored Content", "", "1,305", "1912-1973"),
     ("The Messenger Magazine", "Sponsored Content", "10", "", "1917-1928"),
     ("Opportunity: A Journal of Negro Life", "Sponsored Content", "27", "14", "1923-1949"),
