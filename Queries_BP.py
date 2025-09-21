@@ -1,45 +1,49 @@
-
-
 # Simple Analysis of Black Publications Dataset 18th-21st centuries
-# Century 
-
-# What is the time period with the most publications?
-# Answer "The time period with the most publications is 1970-Current with 2 publications"
 
 
 import sqlite3
 
-# Connect to the database
-conn = sqlite3.connect('publications.db')
+# Connect to the pub_freq.db database
+db_path = "pub_freq.db"
+conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
-# Ensure the `publications` table exists
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='publications';")
-table_exists = cursor.fetchone()
-
-if not table_exists:
-    print("Error: The `publications` table does not exist in the database.")
-    conn.close()
-    exit()
-
-# Query to find the time period with the most publications
-query = '''
-SELECT time_period, COUNT(*) AS publication_count
+# Query: Retrieve publication titles with Black women as their audience
+print("=== Query: Publication Titles with Black Women as Their Audience ===")
+query_black_women_audience = '''
+SELECT publication_title
 FROM publications
-GROUP BY time_period
-ORDER BY publication_count DESC
-LIMIT 1;
+WHERE audience LIKE '%Black women%';
 '''
+cursor.execute(query_black_women_audience)
+results = cursor.fetchall()
 
-# Execute the query
-cursor.execute(query)
-result = cursor.fetchone()
-
-# Print the result
-if result:
-    print(f"\nThe time period with the most publications is {result[0]} with {result[1]} publications.")
+# Display the results
+if results:
+    print("Publications with Black Women as Their Audience:")
+    for row in results:
+        print(f"- {row[0]}")
 else:
-    print("\nNo publications found in the database.")
+    print("No publications found with Black women as their audience.")
 
-# Close the connection
+# Close the database connection
 conn.close()
+
+
+
+
+
+
+
+
+# BREAK FOR QUERY 2 #
+
+
+
+
+
+
+
+
+
+
